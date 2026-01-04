@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <!-- Volver a la lista -->
+        <a href="{% url 'post_list' %}" class="btn btn-link mb-3">
+            &larr; Volver a publicaciones
+        </a>
+
+        <!-- Tarjeta de creación -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Crear nueva publicación</h3>
+            </div>
+
+            <div class="card-body">
+                <p class="text-muted">
+                    Compartí un pensamiento, una foto o algo de tu día 💭📷
+                </p>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {{ form.non_field_errors }}
+
+                    <!-- Contenido -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Contenido
+                        </label>
+                        {{ form.content.errors }}
+                        {{ form.content }}
+                        <div class="form-text">
+                            Podés escribir un texto corto, una reflexión o una descripción de la foto.
+                        </div>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Imagen (opcional)
+                        </label>
+                        {{ form.image.errors }}
+                        {{ form.image }}
+                        <div class="form-text">
+                            Formatos recomendados: JPG o PNG.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Publicar
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

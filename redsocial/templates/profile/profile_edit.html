@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0 text-center">Editar perfil</h4>
+            </div>
+            <div class="card-body">
+
+                <div class="text-center mb-3">
+                    <img src="{{ user.userprofile.avatar.url }}"
+                         class="rounded-circle"
+                         width="120" height="120"
+                         style="object-fit: cover;">
+                </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label">Cambiar avatar</label>
+                        {{ form.avatar }}
+                        <div class="form-text">
+                            Elegí una nueva foto de perfil (JPG o PNG).
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Guardar cambios
+                    </button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <a href="{% url 'profile' %}" class="text-muted">
+                        &larr; Volver a mi perfil
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

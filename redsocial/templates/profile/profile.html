@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <!-- Card de perfil -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body text-center">
+
+                <img src="{{ user.userprofile.avatar.url }}"
+                     class="rounded-circle mb-3"
+                     width="120" height="120"
+                     style="object-fit: cover;">
+
+                <h3 class="mb-0">{{ user.username }}</h3>
+
+                {% if user.email %}
+                    <p class="text-muted mb-1">{{ user.email }}</p>
+                {% endif %}
+
+                <p class="text-muted mb-2">
+                    Miembro desde {{ user.date_joined|date:"d/m/Y" }}
+                </p>
+
+                <p class="mb-3">
+                    <span class="fw-semibold">{{ posts|length }}</span>
+                    publicaciones
+                </p>
+
+                <a href="{% url 'profile_edit' %}" class="btn btn-primary btn-sm">
+                    Editar perfil
+                </a>
+            </div>
+        </div>
+
+        <!-- Publicaciones del usuario -->
+        <h4 class="mb-3">Mis publicaciones</h4>
+
+        {% for post in posts %}
+            <div class="card mb-3">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top"
+                         style="max-height: 300px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <p class="text-muted mb-1">
+                        {{ post.created_at|date:"d/m/Y H:i" }}
+                    </p>
+                    <p class="mb-2">{{ post.content }}</p>
+                    <a href="{% url 'post_detail' post.pk %}" class="btn btn-outline-primary btn-sm">
+                        Ver publicación →
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-muted">Todavía no publicaste nada.</p>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
