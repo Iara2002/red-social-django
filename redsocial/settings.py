@@ -119,16 +119,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
 STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+=======
+>>>>>>> 5b63707d3d425c608cb326254d8b17b22bea0273
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'post_list'
 LOGOUT_REDIRECT_URL = 'login'
+=======
+
+# Redirección después de iniciar sesión
+LOGIN_REDIRECT_URL = '/'  # Redirige a la página de inicio después del login
+
+# Redirección después de cerrar sesión
+LOGOUT_REDIRECT_URL = '/'  # Redirige a la página de inicio después del logout
+>>>>>>> 5b63707d3d425c608cb326254d8b17b22bea0273

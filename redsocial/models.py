@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -16,6 +17,9 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+=======
+from django.contrib.auth.models import User  # Importamos el modelo de usuario de Django
+>>>>>>> 5b63707d3d425c608cb326254d8b17b22bea0273
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el usuario
@@ -26,7 +30,10 @@ class Post(models.Model):
     def __str__(self):
         return f"Post de {self.user.username}"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b63707d3d425c608cb326254d8b17b22bea0273
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)  # Relación con el post
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Autor del comentario
@@ -36,11 +43,18 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comentario de {self.user.username} en {self.post.id}"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b63707d3d425c608cb326254d8b17b22bea0273
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)  # Relación con el post
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Usuario que dio like
     created_at = models.DateTimeField(auto_now_add=True)  # Fecha del like
 
     def __str__(self):
+<<<<<<< HEAD
         return f"Like de {self.user.username} en {self.post.id}"
+=======
+        return f"Like de {self.user.username} en {self.post.id}"
+>>>>>>> 5b63707d3d425c608cb326254d8b17b22bea0273

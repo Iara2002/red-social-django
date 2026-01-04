@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib.auth import views as auth_views
+<<<<<<< HEAD
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -54,3 +55,19 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+=======
+from . import views  # Importar views correctamente
+
+
+urlpatterns = [
+     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),  # Página de login
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),  # Cierre de sesión
+     path('accounts/register/', views.RegisterView.as_view(), name='register'),
+    path('', views.PostListView.as_view(), name='home'),  # Redirigir la raíz a la lista de posts
+    path('posts/', views.PostListView.as_view(), name='post_list'),
+    path('post/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
+    path('post/create/', views.PostCreateView.as_view(), name='post_create'),
+    path('comment/create/', views.CommentCreateView.as_view(), name='comment_create'),
+    path('like/<int:id>/', views.LikeToggleView.as_view(), name='like_toggle'),
+]
+>>>>>>> 5b63707d3d425c608cb326254d8b17b22bea0273
